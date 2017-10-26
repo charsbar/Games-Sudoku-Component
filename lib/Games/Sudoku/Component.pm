@@ -124,7 +124,8 @@ methods to make it easy to play Sudoku -- just for example.
 
 Actually, this module set is written to provide 'controller'
 APIs to other applications. You can easily integrate this with
-CGI or Perl/Tk application. See appropriate PODs for details.
+CGI, PSGI, or Perl/Tk application. See L<Games::Sudoku::Component::Controller>
+and the other modules for details.
 
 =head1 METHODS
 

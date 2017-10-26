@@ -255,13 +255,15 @@ This is a main controller.
 
 =head2 table
 
+Returns L<Games::Sudoku::Component::Table> 
+
 =head2 history
+
+Returns L<Games::Sudoku::Component::Controller::History>
 
 =head2 status
 
-Returns L<Games::Sudoku::Component::Table>, 
-L<Games::Sudoku::::Component::Controller::History>, 
-L<Games::Sudoku::::Component::Controller::Status> object respectively.
+Returns L<Games::Sudoku::Component::Controller::Status>
 
 =head1 METHODS
 
@@ -322,6 +324,13 @@ which value should be set (or should be tried).
 Tries to set a value of cell(I<row>, I<column>) to I<value>.
 Though the value is not allowed in fact, the cell stores
 the value temporarily.
+
+You can check if a move is allowed using the following method:
+
+  $controller->table->cell($row, $col)->is_allowed($value)
+
+See L<Games::Sudoku::Component::Table> and
+L<Games::Sudoku::Component::Table::Cell> for details.
 
 =head2 find_hints
 
