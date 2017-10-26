@@ -213,7 +213,7 @@ unless ($@) {
 
     # Size should be square
     sub {
-      dies_ok(
+      throws_ok(
         sub {
           $c3 = Games::Sudoku::Component::Table::Cell->new(
             row  => 1,
@@ -221,13 +221,13 @@ unless ($@) {
             size => 10,
             perm => $perm,
           );
-        }
+        }, qr/^Invalid size: 10 /
       );
     },
 
     # Block setting should need both width and height
     sub {
-      dies_ok(
+      throws_ok(
         sub {
           my $err = Games::Sudoku::Component::Table::Cell->new(
             row => 1,
@@ -235,11 +235,11 @@ unless ($@) {
             block_width => 3,
             perm => $perm,
           );
-        }
+        }, qr/^Invalid block: width 3, height 0 /
       );
     },
     sub {
-      dies_ok(
+      throws_ok(
         sub {
           my $err = Games::Sudoku::Component::Table::Cell->new(
             row => 1,
@@ -247,13 +247,13 @@ unless ($@) {
             block_height => 3,
             perm => $perm,
           );
-        }
+        }, qr/^Invalid block: width 0, height 3 /
       );
     },
 
     # Row or Col should be between 1 and $size, inclusive.
     sub {
-      dies_ok(
+      throws_ok(
         sub {
           my $err = Games::Sudoku::Component::Table::Cell->new(
             row  => 10,
@@ -261,11 +261,11 @@ unless ($@) {
             size => 9,
             perm => $perm,
           );
-        }
+        }, qr/^Invalid value: 10 /
       );
     },
     sub {
-      dies_ok(
+      throws_ok(
         sub {
           my $err = Games::Sudoku::Component::Table::Cell->new(
             row  => 1,
@@ -273,41 +273,41 @@ unless ($@) {
             size => 9,
             perm => $perm,
           );
-        }
+        }, qr/^Invalid value: 10 /
       );
     },
     sub {
-      dies_ok(
+      throws_ok(
         sub {
           my $err = Games::Sudoku::Component::Table::Cell->new(
             row  => 0,
             col  => 1,
             perm => $perm,
           );
-        }
+        }, qr/^Invalid value: 0 /
       );
     },
     sub {
-      dies_ok(
+      throws_ok(
         sub {
           my $err = Games::Sudoku::Component::Table::Cell->new(
             row  => 1,
             col  => 0,
             perm => $perm,
           );
-        }
+        }, qr/^Invalid value: 0 /
       );
     },
 
     # Permission object is required
     sub {
-      dies_ok(
+      throws_ok(
         sub {
           my $err = Games::Sudoku::Component::Table::Cell->new(
             row  => 1,
             col  => 1,
           );
-        }
+        }, qr/^Invalid perm:  at/
       );
     },
 

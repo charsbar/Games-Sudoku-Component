@@ -110,50 +110,50 @@ unless ($@) {
 
     # Check boundaries
     sub {
-      dies_ok(
+      throws_ok(
         sub {
           $p->_flag($flag, -1);
-        }
+        }, qr/^Invalid value: -1 /
       );
     },
 
     sub {
-      dies_ok(
+      throws_ok(
         sub {
           $p->_flag($flag, 10);
-        }
+        }, qr/^Invalid value: 10 /
       );
     },
 
     sub {
-      dies_ok(
+      throws_ok(
         sub {
           $p->_on($flag, 10);
-        }
+        }, qr/^Invalid value: 10 /
       );
     },
 
     sub {
-      dies_ok(
+      throws_ok(
         sub {
           $p->_on($flag, -1);
-        }
+        }, qr/^Invalid value: -1 /
       );
     },
 
     sub {
-      dies_ok(
+      throws_ok(
         sub {
           $p->_off($flag, 10);
-        }
+        }, qr/^Invalid value: 10 /
       );
     },
 
     sub {
-      dies_ok(
+      throws_ok(
         sub {
           $p->_off($flag, -1);
-        }
+        }, qr/^Invalid value: -1 /
       );
     },
 
