@@ -52,40 +52,40 @@ eval "use Test::Exception";
 unless ($@) {
   push @tests, (
     sub {
-      dies_ok(
+      throws_ok(
         sub {
           my $err = Games::Sudoku::Component::Table::Item->new;
-        }
+        }, qr/^Row is undefined /
       );
     },
     sub {
-      dies_ok(
+      throws_ok(
         sub {
           my $err = Games::Sudoku::Component::Table::Item->new(
             col => 5,
             allowed => [1,2,3,4]
           );
-        }
+        }, qr/^Row is undefined /
       );
     },
     sub {
-      dies_ok(
+      throws_ok(
         sub {
           my $err = Games::Sudoku::Component::Table::Item->new(
             row => 5,
             allowed => [1,2,3,4]
           );
-        }
+        }, qr/^Col is undefined /
       );
     },
     sub {
-      dies_ok(
+      throws_ok(
         sub {
           my $err = Games::Sudoku::Component::Table::Item->new(
             row => 5,
             col => 4,
           );
-        }
+        }, qr/^Allowed is undefined /
       );
     },
 

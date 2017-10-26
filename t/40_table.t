@@ -419,33 +419,33 @@ unless ($@) {
 
     # Size should be square
     sub {
-      dies_ok(
+      throws_ok(
         sub {
           my $err = Games::Sudoku::Component::Table->new(
             size => 10,
           );
-        }
+        }, qr/^Invalid size: 10 /
       );
     },
 
 
     # Block setting should need both width and height
     sub {
-      dies_ok(
+      throws_ok(
         sub {
           my $err = Games::Sudoku::Component::Table->new(
             block_width => 3,
           );
-        }
+        }, qr/^Invalid block: width 3, height 0 /
       );
     },
     sub {
-      dies_ok(
+      throws_ok(
         sub {
           my $err = Games::Sudoku::Component::Table->new(
             block_height => 3,
           );
-        }
+        }, qr/^Invalid block: width 0, height 3 /
       );
     },
 
