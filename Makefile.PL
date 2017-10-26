@@ -13,4 +13,16 @@ WriteMakefile(
     ($ExtUtils::MakeMaker::VERSION >= 6.31 ?
       (LICENSE => 'perl') : ()
     ),
+    ($ExtUtils::MakeMaker::VERSION >= 6.46 ?
+      (META_MERGE => {
+          'meta-spec' => { version => 2 },
+          resources => {
+              repository => {
+                  type => 'git',
+                  url  => 'http://github.com/charsbar/Games-Sudoku-Component.git',
+                  web  => 'http://github.com/charsbar/Games-Sudoku-Component',
+              }
+          }
+       }) : ()
+    ),
 );
