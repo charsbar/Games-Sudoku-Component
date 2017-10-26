@@ -2,6 +2,13 @@ branches:
   except:
     - gh-pages
 language: perl
+env:
+  global:
+    - TEST_POD=1
+before_install:
+  - cpanm --notest Test::Pod
+  - cpanm --notest Test::Pod::Coverage
+  - cpanm --notest Test::Exception
 perl:
   - "5.20"
   - "5.22"
