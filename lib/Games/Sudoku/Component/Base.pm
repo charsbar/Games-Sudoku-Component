@@ -50,6 +50,7 @@ package Games::Sudoku::Component::Base;
 
     croak "Invalid value: undef"  unless defined $value;
     croak "Invalid value: $value" if $value > $this->{size} || $value < 1;
+    croak "Invalid value: $value" if $value != int $value;
 
     $value;
   }

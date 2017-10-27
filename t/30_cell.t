@@ -311,6 +311,41 @@ unless ($@) {
       );
     },
 
+    sub {
+      is($c->value, 1, 'check before');
+    },
+    sub {
+      throws_ok(
+        sub {
+          $c->value(-1);
+        }, qr/^Invalid value: -1 /
+      );
+    },
+    sub {
+      is($c->value, 1, 'still the same');
+    },
+    sub {
+      throws_ok(
+        sub {
+          $c->value(10);
+        }, qr/^Invalid value: 10 /
+      );
+    },
+    sub {
+      is($c->value, 1, 'still the same');
+    },
+
+    sub {
+      throws_ok(
+        sub {
+          $c->value(2.5);
+        }, qr/^Invalid value: 2.5 /
+      );
+    },
+    sub {
+      is($c->value, 1, 'still the same');
+    },
+
   );
 }
 

@@ -122,6 +122,12 @@ _EOT_
   sub {
     ok($c3->table->cell(2,1)->value == 0);
   },
+  sub {
+    ok($c3->set(2, 1, 1));
+  },
+  sub {
+    ok($c3->table->cell(2,1)->value == 1);
+  },
 );
 
 # We have some exception tests.
@@ -129,6 +135,29 @@ _EOT_
 eval "use Test::Exception";
 unless ($@) {
   push @tests, (
+    sub {
+      throws_ok(
+        sub {
+          ok($c3->set(2, 2, -1));
+        }, qr/^Invalid value: -1 /
+      );
+    },
+
+    sub {
+      throws_ok(
+        sub {
+          ok($c3->set(2, 2, 7));
+        }, qr/^Invalid value: 7 /
+      );
+    },
+
+    sub {
+      throws_ok(
+        sub {
+          ok($c3->set(2, 2, 1.5));
+        }, qr/^Invalid value: 1.5 /
+      );
+    },
 
   );
 }
